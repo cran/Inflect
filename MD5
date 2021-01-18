@@ -1,0 +1,15 @@
+cfb394a08ff603570fab5d00e81ae952 *DESCRIPTION
+892a6583ad3d354b1a1212beace0bd9f *NAMESPACE
+3ee2a333587ecba87abdd1716c3e9912 *R/FPLFit.R
+910ac6d02604c15dc28271c7cb135fce *R/FPLFit_Correction.R
+d8e38fd03f7fadbc034c39c9cddafa44 *R/Inflect.R
+dc2d2346e65812e8d5ad0d5750a100c0 *R/InflectWorkflow.R
+bdf0abcd8db745d0367e4ce885d5efe2 *build/vignette.rds
+0f40354ed7200808e22424e1f8cde6d2 *inst/doc/my-vignette.R
+2efdfb710ca3a13f0e1ee2ae5d4806ce *inst/doc/my-vignette.Rmd
+affd276e7c82ce11040b67ea7f81e107 *inst/doc/my-vignette.html
+ebfb153ed72a18e4305d4c5e2ff3d78a *man/FPLFit.Rd
+d387d1840010fdb9eaca7462bf5d1986 *man/FPLFit_Correction.Rd
+5cab26488387745d2b20fb74ba97dcaa *man/Inflect.Rd
+81a28fee027e7bf630a3028800db5b61 *man/InflectWorkflow.Rd
+2efdfb710ca3a13f0e1ee2ae5d4806ce *vignettes/my-vignette.Rmd

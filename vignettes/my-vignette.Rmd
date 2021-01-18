@@ -1,0 +1,79 @@
+---
+title: "Inflect Vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{my-vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+# R Markdown
+
+This program calculates melt curves, melt temperatures (Tm) and corresponding melt shifts (delta Tm) from LC-MS/MS abundance data collected in TPP experiments.
+
+Inputs to this function are described below and are entered by the user.
+
+1). Directory name for the raw data files to be analyzed.
+
+Enter the path for the directory that contains the raw data files to be analyzed. This directory will also be used by the program to deposit results from the analysis. An example of code that could be used: 
+
+directory<-"/Users/Einstein/TPP Studies/Study1"
+
+2). The temperatures used in the TPP study. There needs to be a corresponding column in the Excel file described above for each temperature listed in this section of the code. An example of code that could be used: 
+
+Temperature<-c(35.0,45.3,50.1,55.2,60.7,74.9)
+
+3). The Rsquared cutoff that is to be used to describe a melt curve as acceptable. An example of code that could be used: 
+
+Rsq<-0.95
+
+4). The standard deviation of the melt shift values. If the value is listed as 2, it indicates that only melt shifts greater than 2 standard deviations from the mean melt shift will be listed as significant. An example of code that could be used: 
+
+NumSD<-2
+
+5). The number of replicates to be analyzed by the program. There should be a set of files (Condition#.xlsx and Control#.xlsx) for each replicate. If for example there are two replicates, there should be files Condition 1.xlsx, Condition 2.xlsx, Control 1.xlsx and Control 2.xlsx. An example of code that could be used: 
+
+NReps<-2
+
+6) The xlsx formatted files to be analyzed need to be copied to the directory specified above. One file needs to be names "Condition #.xlsx" and contains abundance data from the TPP experiment where a drug is administered to a cell line or a genetic mutation is used. The other file needs to be names "Control #.xlsx" and contains the corresponding abundance data from the control condition where the cells or tissue of interest is treated with vehicle or is the Wild Type cell line. The files need to have the following format:
+
+Column A: Labeled as "Accession". This column contains the Accession numbers reported from the proteomics search of LC-MS/MS data.
+
+Column B and higher: These columns contain the abundance data from each corresponding protein in Column A. Each column will correspond to the abundance data at each temperature of the TPP experiment.
+
+The # in each file name needs to correspond to the replicate number.
+
+
+Outputs of the function is as follows:
+
+The following will be saved to the directory specified for each set of replicate files:
+
+1). Results.xlsx file.
+This file lists the calculated melt shifts and related data for each protein regardless of the criteria (Rsquared and standard deviations).
+
+2). SignificantResults.xlsx This file lists the calculated melt shifts and related data for each protein that was considered significant by the criteria above.
+
+3). Curves Folder This folder contains the melt curves (in pdf format) for each protein regardless of the significance of the curve.
+
+4). Significant Curves Folder. This folder contains the melt curves (in pdf format) for significant proteins only.
+
+5). Normalized Condition and Control result files These files contain the normalized abundance values for each protein and at each temperature.
+
+6). Waterfall plot This plot shows the calculated melt shifts across the proteome in the study. The melt shifts are plotted in order of value (from highest to lowest). A pdf version of this plot is created in the Curves folder.
+
+The following will be saved to the directory specified:
+
+1). A SummaryResults.xlsx file that lists the melt shifts for each accession number (significant melt shift proteins) found across each replicate.
+2). A AllSignificant.xlsx file that lists the accession numbers for the significant proteins across each replicate.
+3). AllSignificantStabDestab.xlsx file that lists the accession numbers for the stabilized and destabilized proteins across each replicate.
+
+
+```{r setup}
+library(Inflect)
+```
