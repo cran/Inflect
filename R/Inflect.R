@@ -1,24 +1,11 @@
-#' This function analyzes raw abundance data from a Thermal Profiling experiment and calculates melt temperatures and melt shifts for each protein in the experiment.
-#' An example line of code that could be run to test the program function is shown below.
-#' The directory below is an example directory but should be replaced with the path that the source files are present.
-#' This directory is also the location where the output files including pdf and Excel will be transferred once the calculations are complete.
-#' The source files should be Excel format or xlsx and there should be two files for each replicate condition.
-#' For example if there is one replicate, there should be one file titled Condition 1.xlsx and another file titled Control 1.xlsx. Data from the Control or vehicle will be in the Control file and data from the condition or treatment will be in the Condition file.
-#' Each spreadsheet file should have the format where the first column header should be Accession and all of the values in this column are accession numbers for the proteins.
-#' There should be a column then for each temperature at which the experiment was run. For example if there are 8 temperatures, there should be 8 columns after the accession column.
-#' Each temperature column can have its own label but the values in each cell should correspond to the abundance values for each protein and at each temperature.
-#' directory<-"/Users/folder_1/folder_2"
-#' Temperature<-c(35,45,50,55,60,75)
-#' Rsq<-0.95
-#' NumSD<-2
-#' NReps<-3
-#' Inflect(directory,Temperature,Rsq,NumSD,NReps)
+#' This function analyzes raw abundance data from a Thermal Proteome Profiling experiment and calculates melt temperatures and melt shifts for each protein in the experiment.
 #' @param directory the directory where the source data files to be analyzed are saved. This is also the location where the results will be saved.
 #' @param Temperature the temperatures from the heat treatment procedure. An example entry Temperature<-c(25,35,39.3,50.1,55.2,60.7,74.9,90)
 #' @param Rsq the cutoff to be used for the melt shift curve fit. An example entry would be 0.95
 #' @param NumSD the standard deviation cutoff to be used for the calculated melt shifts. For example, if NumSD = 2, proteins with melt shifts greater than 2 standard deviations from the mean will be considered significant.
 #' @param NReps the number of replicate experiments to be analyzed
 #' @importFrom readxl read_excel
+#' @importFrom readxl read_xlsx
 #' @importFrom writexl write_xlsx
 #' @importFrom stats median
 #' @importFrom stats nls
@@ -45,24 +32,26 @@
 #' @importFrom ggplot2 theme_gray
 #' @importFrom ggplot2 geom_hline
 #' @importFrom ggplot2 ggsave
-#' @return xlsx files with calculated melt shift for each protein in the experiment
+#' @importFrom UpSetR upset
+#' @importFrom UpSetR fromList
+#' @return xlsx files with calculated melt shift for each protein in the experiment along with Upset plots that show the overlap in number of proteins stabilized and destabilized between each replicate
 Inflect<-function(directory,Temperature,Rsq,NumSD,NReps){
 
 SourcePath<-directory
 
 #This section of code repeats the analysis function for every replicate data set.
-RepNum<-1
+Rep<-1
 repeat{
-  MasterDirectory<-paste(directory,paste("Rep",RepNum),sep="/")
+  MasterDirectory<-paste(directory,paste("Rep",Rep),sep="/")
   dir.create(MasterDirectory)
   dir.create(paste(MasterDirectory,"Curves",sep="/"))
   dir.create(paste(MasterDirectory,"SigCurves",sep="/"))
   OutputPath_Curves=paste(MasterDirectory,"Curves",sep="/")
   OutputPath_SigCurves=paste(MasterDirectory,"SigCurves",sep="/")
   OutputPath =MasterDirectory
-  Inflect<-InflectWorkflow(Rsq,NumSD,Temperature,RepNum,SourcePath,OutputPath)
-  RepNum<-RepNum+1
-  if (RepNum > NReps){
+  Inflect<-InflectWorkflow(Rsq,NumSD,Temperature,Rep,SourcePath,OutputPath)
+  Rep<-Rep+1
+  if (Rep > NReps){
     break
   }
 }
@@ -120,5 +109,21 @@ MeltShiftDataSubsetDestabilizedWide <- spread(as.data.frame(MeltShiftDataSubsetD
 write_xlsx(MeltShiftDataSubsetWide,paste(OutputPath,"SummaryResults.xlsx",sep="/"))
 write_xlsx(MeltShiftDataUpset,paste(OutputPath,"AllSignificant.xlsx",sep="/"))
 write_xlsx(MeltShiftDataUpsetDS,paste(OutputPath,"AllSignificantStabDestab.xlsx",sep="/"))
+DestabList<-MeltShiftDataUpsetDS[c(1:NReps)]
+StabList<-MeltShiftDataUpsetDS[c((NReps+1):(NReps*2))]
+
+write_xlsx(DestabList,paste(OutputPath,"AllSignificantDestabilized.xlsx",sep="/"))
+write_xlsx(StabList,paste(OutputPath,"AllSignificantStabilized.xlsx",sep="/"))
+
+DestabFile<-as.data.frame(read_excel(paste(directory,"AllSignificantDestabilized.xlsx",sep="/")))
+StabFile<-as.data.frame(read_excel(paste(directory,"AllSignificantStabilized.xlsx",sep="/")))
+pdf(file=paste(directory,"DestabilizedUpset.pdf",sep="/"),onefile = FALSE)
+print(upset(fromList(DestabFile),nsets=NReps))
+dev.off()
+pdf(file=paste(directory,"StabilizedUpset.pdf",sep="/"),onefile = FALSE)
+print(upset(fromList(StabFile),nsets=NReps))
+dev.off()
+
+
 }
 

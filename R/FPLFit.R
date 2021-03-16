@@ -1,5 +1,4 @@
-#' This function determines the 4 parameter log fit constants for each protein in the melt shift data sets.
-#' See the Inflect function file for an example of program that could be executed to test the program function.
+#' This function determines the 4 parameter log fit constants for each protein in the melt shift data sets
 #' @param Data_Norm_Omit List of accession numbers with NA omitted
 #' @param NormBothCorrect List of normalized values from the FPLFit Correction function
 #' @param Condition The Condition or the Control depending on which data set is being analyzed

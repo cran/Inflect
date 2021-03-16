@@ -1,9 +1,8 @@
-#' This function analyzes raw abundance data from a Thermal Profiling experiment and calculates melt temperatures and melt shifts for each protein in the experiment.
-#' See the Inflect function file for an example of program that could be executed to test the program function.
+#' This function analyzes raw abundance data from a Thermal Proteome Profiling experiment and calculates melt temperatures and melt shifts for each protein in the experiment.
 #' @param Temperature the temperatures from the heat treatment procedure. An example entry Temperature<-c(25,35,39.3,50.1,55.2,60.7,74.9,90)
 #' @param Rsq the cutoff to be used for the melt shift curve fit. An example entry would be 0.95
 #' @param NumSD the standard deviation cutoff to be used for the calculated melt shifts. For example, if NumSD = 2, proteins with melt shifts greater than 2 standard deviations from the mean will be considered significant.
-#' @param Rep the replicate number that is being analyzed
+#' @param Rep the number of replicate experiments to be analyzed
 #' @param SourcePath The path for the source data
 #' @param OutputPath The path for the output data
 #' @importFrom readxl read_excel

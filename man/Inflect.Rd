@@ -2,21 +2,7 @@
 % Please edit documentation in R/Inflect.R
 \name{Inflect}
 \alias{Inflect}
-\title{This function analyzes raw abundance data from a Thermal Profiling experiment and calculates melt temperatures and melt shifts for each protein in the experiment.
-An example line of code that could be run to test the program function is shown below.
-The directory below is an example directory but should be replaced with the path that the source files are present.
-This directory is also the location where the output files including pdf and Excel will be transferred once the calculations are complete.
-The source files should be Excel format or xlsx and there should be two files for each replicate condition.
-For example if there is one replicate, there should be one file titled Condition 1.xlsx and another file titled Control 1.xlsx. Data from the Control or vehicle will be in the Control file and data from the condition or treatment will be in the Condition file.
-Each spreadsheet file should have the format where the first column header should be Accession and all of the values in this column are accession numbers for the proteins.
-There should be a column then for each temperature at which the experiment was run. For example if there are 8 temperatures, there should be 8 columns after the accession column.
-Each temperature column can have its own label but the values in each cell should correspond to the abundance values for each protein and at each temperature.
-directory<-"/Users/folder_1/folder_2"
-Temperature<-c(35,45,50,55,60,75)
-Rsq<-0.95
-NumSD<-2
-NReps<-3
-Inflect(directory,Temperature,Rsq,NumSD,NReps)}
+\title{This function analyzes raw abundance data from a Thermal Proteome Profiling experiment and calculates melt temperatures and melt shifts for each protein in the experiment.}
 \usage{
 Inflect(directory, Temperature, Rsq, NumSD, NReps)
 }
@@ -32,22 +18,8 @@ Inflect(directory, Temperature, Rsq, NumSD, NReps)
 \item{NReps}{the number of replicate experiments to be analyzed}
 }
 \value{
-xlsx files with calculated melt shift for each protein in the experiment
+xlsx files with calculated melt shift for each protein in the experiment along with Upset plots that show the overlap in number of proteins stabilized and destabilized between each replicate
 }
 \description{
-This function analyzes raw abundance data from a Thermal Profiling experiment and calculates melt temperatures and melt shifts for each protein in the experiment.
-An example line of code that could be run to test the program function is shown below.
-The directory below is an example directory but should be replaced with the path that the source files are present.
-This directory is also the location where the output files including pdf and Excel will be transferred once the calculations are complete.
-The source files should be Excel format or xlsx and there should be two files for each replicate condition.
-For example if there is one replicate, there should be one file titled Condition 1.xlsx and another file titled Control 1.xlsx. Data from the Control or vehicle will be in the Control file and data from the condition or treatment will be in the Condition file.
-Each spreadsheet file should have the format where the first column header should be Accession and all of the values in this column are accession numbers for the proteins.
-There should be a column then for each temperature at which the experiment was run. For example if there are 8 temperatures, there should be 8 columns after the accession column.
-Each temperature column can have its own label but the values in each cell should correspond to the abundance values for each protein and at each temperature.
-directory<-"/Users/folder_1/folder_2"
-Temperature<-c(35,45,50,55,60,75)
-Rsq<-0.95
-NumSD<-2
-NReps<-3
-Inflect(directory,Temperature,Rsq,NumSD,NReps)
+This function analyzes raw abundance data from a Thermal Proteome Profiling experiment and calculates melt temperatures and melt shifts for each protein in the experiment.
 }

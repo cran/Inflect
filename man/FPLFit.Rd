@@ -2,8 +2,7 @@
 % Please edit documentation in R/FPLFit.R
 \name{FPLFit}
 \alias{FPLFit}
-\title{This function determines the 4 parameter log fit constants for each protein in the melt shift data sets.
-See the Inflect function file for an example of program that could be executed to test the program function.}
+\title{This function determines the 4 parameter log fit constants for each protein in the melt shift data sets}
 \usage{
 FPLFit(
   Data_Norm_Omit,
@@ -28,6 +27,5 @@ FPLFit(
 normalized data for each protein to the Inflect program
 }
 \description{
-This function determines the 4 parameter log fit constants for each protein in the melt shift data sets.
-See the Inflect function file for an example of program that could be executed to test the program function.
+This function determines the 4 parameter log fit constants for each protein in the melt shift data sets
 }

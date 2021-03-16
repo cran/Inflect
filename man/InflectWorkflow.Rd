@@ -2,8 +2,7 @@
 % Please edit documentation in R/InflectWorkflow.R
 \name{InflectWorkflow}
 \alias{InflectWorkflow}
-\title{This function analyzes raw abundance data from a Thermal Profiling experiment and calculates melt temperatures and melt shifts for each protein in the experiment.
-See the Inflect function file for an example of program that could be executed to test the program function.}
+\title{This function analyzes raw abundance data from a Thermal Proteome Profiling experiment and calculates melt temperatures and melt shifts for each protein in the experiment.}
 \usage{
 InflectWorkflow(Rsq, NumSD, Temperature, Rep, SourcePath, OutputPath)
 }
@@ -14,7 +13,7 @@ InflectWorkflow(Rsq, NumSD, Temperature, Rep, SourcePath, OutputPath)
 
 \item{Temperature}{the temperatures from the heat treatment procedure. An example entry Temperature<-c(25,35,39.3,50.1,55.2,60.7,74.9,90)}
 
-\item{Rep}{the replicate number that is being analyzed}
+\item{Rep}{the number of replicate experiments to be analyzed}
 
 \item{SourcePath}{The path for the source data}
 
@@ -24,6 +23,5 @@ InflectWorkflow(Rsq, NumSD, Temperature, Rep, SourcePath, OutputPath)
 xlsx files with calculated melt shift for each protein in the experiment
 }
 \description{
-This function analyzes raw abundance data from a Thermal Profiling experiment and calculates melt temperatures and melt shifts for each protein in the experiment.
-See the Inflect function file for an example of program that could be executed to test the program function.
+This function analyzes raw abundance data from a Thermal Proteome Profiling experiment and calculates melt temperatures and melt shifts for each protein in the experiment.
 }

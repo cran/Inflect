@@ -2,24 +2,22 @@
 % Please edit documentation in R/FPLFit_Correction.R
 \name{FPLFit_Correction}
 \alias{FPLFit_Correction}
-\title{This function determines the 4 parameter log fit constants for all proteins in the control and condition files.
-See the Inflect function file for an example of program that could be executed to test the program function.}
+\title{This function determines the 4 parameter log fit constants for the two conditions in a replicate}
 \usage{
 FPLFit_Correction(Median, Data_Norm_Omit, Condition, Temperature)
 }
 \arguments{
-\item{Median}{Median abundance values}
+\item{Median}{The median fold change abundance from each temperature}
 
-\item{Data_Norm_Omit}{This is the normalized data where data that does not meet criteria has been omitted.}
+\item{Data_Norm_Omit}{List of accession numbers with NA omitted}
 
-\item{Condition}{This is the control or condition that is being analyzed}
+\item{Condition}{The Condition or the Control depending on which data set is being analyzed}
 
 \item{Temperature}{The temperatures from the heat treatment}
 }
 \value{
-set of correction constants for each control and condition
+normalized data to the Inflect program
 }
 \description{
-This function determines the 4 parameter log fit constants for all proteins in the control and condition files.
-See the Inflect function file for an example of program that could be executed to test the program function.
+This function determines the 4 parameter log fit constants for the two conditions in a replicate
 }
